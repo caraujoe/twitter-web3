@@ -16,7 +16,9 @@ export class UserService {
         this.userInSession = this.anonymousUser; //by default;
         this.web3Service.status$.subscribe(async (status) => {
             if(status == true) {
+                console.log('userInSession1',status);
                 this.userInSession = this.buildUser(await this.web3Service.getUserInSession());
+                console.log('userInSession2', this.userInSession);
             }
             else {
                 this.userInSession = this.anonymousUser;
@@ -32,10 +34,11 @@ export class UserService {
     public async getUser(address: string) {
         let user = this.anonymousUser; //by default
         try {
+            console.log('address', address);
             user = this.buildUser(await this.web3Service.getUser(address));
         }
         catch(error) {
-            //nothing
+            //console.log('error al iniciar sesion', error);
         }
         return user;
     }

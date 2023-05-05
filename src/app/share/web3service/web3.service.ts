@@ -13,8 +13,8 @@ declare let window: any;
 @Injectable()
 export class Web3Service {
 
-    protected infuraProjectId = "xxx";
-    protected infuraProjectSecret = "xxx";
+    protected infuraProjectId = "2MQhBSXzN9jeVnjfQ7geHJOlhdP";
+    protected infuraProjectSecret = "75e3e955a15463e6c7135d3296ba0d51";
 
     protected contractAddress = "0x2BEC0f98C63474786389Cd7D149C153ea638CaF6";
 
@@ -117,7 +117,10 @@ export class Web3Service {
     }
 
     public async getUser(address: any) {
-        return this.contractInstance.methods.getUser(address).call();
+        console.log('address', address);
+        const result = this.contractInstance.methods.getUser(address).call();
+        console.log('result', result);
+        return result;
     }
 
     public async getUserInSession() {
@@ -155,6 +158,7 @@ export class Web3Service {
         }
         else {
             let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            console.log('accounts:', accounts);
             this.account = accounts[0];
             console.log(this.account);
             this.status$.next(true);

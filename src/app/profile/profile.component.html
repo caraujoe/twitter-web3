@@ -1,1 +1,28 @@
-<p>profile works!</p>
+<div class="ml-8 mt-4 mb-2">
+    <h1 class="font-bold text-xl">{{user?.name || 'No hay sesion iniciada'}}</h1>
+    <p class="text-gray-500 text-sm">{{tweets.length}} Tweets</p>
+</div>
+<div id="profileContainer" class="relative">
+    <div class="h-48 bg-gray-200">
+        <img class="w-36 h-36 rounded-full border-4 border-white absolute bottom-40 left-6" [src]="user?.avatar">
+    </div>
+    <div class="h-20 bg-white flex justify-end">
+        <button type="button" 
+            class="font-semibold hover:bg-gray-200 rounded-full border border-gray-300 mt-6 mb-6 pr-4 pl-4 mr-6"
+            (click)="openModalEditProfile()"
+        >Edit profile</button>
+    </div>
+    <div id="profileInfo" class="ml-4">
+        <div>
+            <h1 class="font-bold text-xl">{{user?.name || 'No hay sesion iniciada'}}</h1>
+            <p class="text-gray-600">@{{user?.name || 'No hay sesion iniciada'}}</p>
+        </div>
+        <p class="mt-4">{{user?.bio || 'No tienes nada publicado en tu bio'}}</p>
+        <p class="mt-2 text-gray-600">{{user?.address ?? 'Sin direccion'}}</p>
+        <p class="mt-2 text-gray-600"><strong>0</strong> Following <strong>0</strong> Followers</p>    
+    </div>
+</div> 
+<div id="myTweets" class="mt-8 ml-2">
+    <h1 class="font-bold text-2xl">Tweets</h1>
+    <tweet [tweet]="item" *ngFor="let item of tweets"></tweet>
+</div>
