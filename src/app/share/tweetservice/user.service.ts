@@ -44,9 +44,14 @@ export class UserService {
     }
 
     public buildUser(userFromWeb3: any) {
+        let infuraURI = 'https://mysupercoolipfs.infura-ipfs.io/ipfs/';
+        let avatar = infuraURI + userFromWeb3.avatar;
+        if(userFromWeb3.name === "Noir" || userFromWeb3.name === "Mr. X Man" || userFromWeb3.name === "Carlos Araujo" || userFromWeb3.name === "Gaston"){
+            avatar = userFromWeb3.avatar;
+        }
         let user = new User(userFromWeb3.name,
                             userFromWeb3.bio,
-                      'https://mysupercoolipfs.infura-ipfs.io/ipfs/' + userFromWeb3.avatar);
+                            avatar);
         return user;
     }
 
